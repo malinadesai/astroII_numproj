@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np # useful for calculations
 import h5py #required to read hdf5 files
 import matplotlib as mpl
+from fastdist import fastdist 
 
 from scipy.spatial.distance import cdist
 
@@ -23,7 +24,7 @@ def read_gadget_snapshot(file_name):
 	return time, Pos, mass, n_particles, BoxSize
 
 
-file_name = "output/snapshot_002.hdf5"
+file_name = "snapshot_002.hdf5"
 
 time, Pos, mass, n_particles, BoxSize = read_gadget_snapshot(file_name)
 
@@ -41,12 +42,14 @@ z=Pos[:, 2]
 print('new user added')
 
 plt.hist2d(x, y, bins = 1000,  norm=mpl.colors.LogNorm())
-plt.show()
+# plt.show()
 
 
 # FoF algorithm
 linking_length = mean_dist*0.2
 
-print(cdist(Pos, Pos))
+# pairwise_distances = cdist(Pos, Pos)
+pairwise_distances = fastdist.euclidean(Pos, Pos)
+print('done')
 
 
