@@ -23,7 +23,7 @@ def read_gadget_snapshot(file_name):
 	return time, Pos, mass, n_particles, BoxSize
 
 
-file_name = "output/snapshot_002.hdf5"
+file_name = "snapshot_002.hdf5"
 
 time, Pos, mass, n_particles, BoxSize = read_gadget_snapshot(file_name)
 
@@ -31,22 +31,29 @@ print("Scale factor: %g  (should be 1)" %(time))
 
 box_vol = BoxSize
 mean_dist = (box_vol/n_particles)**(1/3) # mean distance between particles
-print(mean_dist)
+print('mean distance between particles = {}'.format(mean_dist))
 
 # sanity check visualizing structure formation
 x=Pos[:, 0]
 y=Pos[:, 1]
 z=Pos[:, 2]
 
-print('new user added')
-
 plt.hist2d(x, y, bins = 1000,  norm=mpl.colors.LogNorm())
 plt.show()
-
 
 # FoF algorithm
 linking_length = mean_dist*0.2
 
-print(cdist(Pos, Pos))
+# find distance between particle i and particle j
+def particle_distance(i, j, positions):
+    x_i, y_i, z_i = positions[i, 0], positions[i, 1], positions[i, 2]
+    x_j, y_j, z_j = positions[j, 0], positions[j, 1], positions[j, 2]
+    return np.sqrt((x_i - x_j)**2 + (y_i - y_j)**2 + (z_i - z_j)**2)
+
+
+
+
+
+
 
 
