@@ -35,6 +35,8 @@ x=Pos[:, 0]
 y=Pos[:, 1]
 z=Pos[:, 2]
 
+print('new user added')
+
 plt.hist2d(x, y, bins = 1000,  norm=mpl.colors.LogNorm())
 plt.show()
 
