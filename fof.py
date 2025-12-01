@@ -3,6 +3,8 @@ import numpy as np # useful for calculations
 import h5py #required to read hdf5 files
 import matplotlib as mpl
 
+from scipy.spatial.distance import cdist
+
 import pdb
 FloatType = np.float64  # double precision: np.float64, for single use np.float32
 
@@ -28,9 +30,10 @@ time, Pos, mass, n_particles, BoxSize = read_gadget_snapshot(file_name)
 print("Scale factor: %g  (should be 1)" %(time))
 
 box_vol = BoxSize
-mean_dist = (box_vol/n_particles)**(1/3)
-print(Pos.shape)
+mean_dist = (box_vol/n_particles)**(1/3) # mean distance between particles
+print(mean_dist)
 
+# sanity check visualizing structure formation
 x=Pos[:, 0]
 y=Pos[:, 1]
 z=Pos[:, 2]
@@ -40,4 +43,10 @@ print('new user added')
 plt.hist2d(x, y, bins = 1000,  norm=mpl.colors.LogNorm())
 plt.show()
 
-print(mean_dist)
+
+# FoF algorithm
+linking_length = mean_dist*0.2
+
+print(cdist(Pos, Pos))
+
+
