@@ -56,10 +56,5 @@ def particle_distance(i, j, positions):
 
 
 
-=======
-# pairwise_distances = cdist(Pos, Pos)
-pairwise_distances = fastdist.euclidean(Pos, Pos)
-print('done')
->>>>>>> b39b1ac53d50028d7f7d38300b1a99cc4fd421c3
 
 
