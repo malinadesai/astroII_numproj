@@ -45,7 +45,6 @@ plt.hist2d(x, y, bins = 1000,  norm=mpl.colors.LogNorm())
 # FoF algorithm
 linking_length = mean_dist*0.2
 
-<<<<<<< HEAD
 # find distance between particle i and particle j
 def particle_distance(i, j, positions):
     x_i, y_i, z_i = positions[i, 0], positions[i, 1], positions[i, 2]
@@ -57,10 +56,8 @@ def particle_distance(i, j, positions):
 
 
 
-=======
 # pairwise_distances = cdist(Pos, Pos)
 pairwise_distances = fastdist.euclidean(Pos, Pos)
 print('done')
->>>>>>> b39b1ac53d50028d7f7d38300b1a99cc4fd421c3
 
 
